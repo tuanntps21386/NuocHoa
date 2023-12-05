@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+<main class="bg-light">
+        <!-- PAGE  -->
+        <section class="page">
+            <div class="container">
+                <section class="main-cart-page main-container col1-layout">
+                    <div class="main container cartpcstyle">
+                        <div class="wrap_background_aside margin-bottom-40">
+                            <div class="header-cart">
+                                <div class="title-block-page">
+                                    <h1 class="title_cart" style="    font-size: 22px;
+                                    margin-bottom: 20px; margin-top: 20px;">
+                                        Thống kê doanh thu theo tháng
+                                    </h1>
+                                </div>
+                            </div>
+                            
+    <form th:action="@{/thongke/doanhthu}" method="get">
+        <label for="nam">Năm:</label>
+        <input type="text" id="nam" name="nam" />
+
+        <label for="thang">Tháng:</label>
+        <input type="text" id="thang" name="thang" />
+
+        <label for="ngay">Ngày:</label>
+        <input type="text" id="ngay" name="ngay" />
+
+        <button type="submit">Tìm kiếm</button>
+    </form>
+                            
+                            <div class="cart-page d-xl-block d-none">
+                                <div class="drawer__inner">
+                                    <div class="CartPageContainer">
+
+                                        <form action="/cart" method="post" novalidate="" class="cart ajaxcart cartpage">
+                                            <div class="cart-header-info">
+                                                <div>Năm</div>
+                								<div>Tháng</div>
+                								<div>Ngày</div>
+                								<div>Doanh thu</div>
+                                            </div>
+                                            <div class="ajaxcart__inner ajaxcart__inner--has-fixed-footer cart_body items">
+                                                <div class="ajaxcart__row">
+                                                    <div class="ajaxcart__product cart_product" data-line="1" th:each="doanhThuTheoThang : ${doanhThuTheoThangs}">
+                                                        
+                                                        <div class="grid__item cart_info">
+                                                            <div class="ajaxcart__product-name-wrapper cart_name"
+                                                            		th:text="${doanhThuTheoThang.nam}">
+                                                               
+                                                            </div>
+                                                            <div class="grid">
+                                                                <div class="grid__item one-half text-right cart_prices"
+                                                                	th:text="${doanhThuTheoThang.thang}">
+                                                                    
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid">
+                                                                <div class="grid__item one-half cart_select"
+                                                                	th:text="${doanhThuTheoThang.ngay}">
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="grid">
+                                                                <div class="grid__item one-half text-right cart_prices"
+                                                                	th:text="${doanhThuTheoThang.doanhThu}">
+                                                                    
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+</main>     
+</body>
+
+</html>

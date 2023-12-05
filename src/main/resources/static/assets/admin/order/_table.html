@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div style="display:flex">
+            <div class="col-md-8">
+                <div class="float-left">ORDER LIST</div>
+            </div>
+            <div class="col-md-4" style="display:flex">
+                <input type="text" class="form-control" placeholder="Can you find products here!" style="width:300px;margin-right: 10px;" ng-model="search">
+                <button class="btn btn-info" ng-click="searchProduct(search)"><b class="glyphicon glyphicon-search"></b></button>
+            </div>
+        </div>
+    </div>
+    <table class="table table-condensed">
+        <thead class="bg-success" style="font-variant:small-caps;">
+            <tr>
+                
+                        <th>Order ID</th>
+                        <th>Username</th>
+                        <th>Order Date</th>
+                        <th>Shipping Address</th>
+                        <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in pager.items">
+                <td>{{item.id}}</td>
+                <td>{{item.account.fullname}}</td>
+                <td>{{item.createDate|date:'dd-MM-yyy'}}</td>
+                <td>{{item.address}}</td>
+                <!--  <td>{{item.status}}</td> -->
+                <td>
+    <select ng-model="item.status" 
+            ng-options="option for option in ['Chờ xác nhận', 'Đang giao', 'Đã thanh toán', 'Hoàn thành']"
+            >
+    </select>
+</td>
+                
+
+            
+                <td>
+                    <div class="btn-group btn-group-xs">
+                        <button ng-click="edit(item)" data-toggle="tab" data-target="#edit" class="btn btn-warning glyphicon glyphicon-edit"></button>
+                        <button ng-click="delete(item)" class="btn btn-danger glyphicon glyphicon-trash"></button>
+                        <button ng-click="update(item)" class="btn btn-success">
+            Update
+        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="panel-footer text-center">
+        <button ng-click="pager.first()" class="btn btn-danger">
+            <b class="glyphicon glyphicon-hand-up"></b>
+        </button>
+        <button ng-click="pager.prev()" class="btn btn-primary">
+            <b class="glyphicon glyphicon-hand-left"></b>
+        </button>
+        <button class="btn btn-success">{{pager.page + 1}} of {{pager.count}}</button>
+        <button ng-click="pager.next()" class="btn btn-primary">
+            <b class="glyphicon glyphicon-hand-right"></b>
+        </button>
+        <button ng-click="pager.last()" class="btn btn-danger">
+            <b class="glyphicon glyphicon-hand-down"></b>
+        </button>
+    </div>
+</div>
