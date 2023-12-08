@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poly.entity.Order;
+import com.poly.entity.OrderDetail;
 import com.poly.service.OrderService;
 
 
@@ -37,7 +38,14 @@ public class OrderController {
 
 	@RequestMapping("/order/detail/{id}")
 	public String detail(@PathVariable("id")Long id,Model model) {
-		model.addAttribute("order", orderService.findById(id));
+		Order order = orderService.findById(id);
+		Double thanhTien = 0.0;
+		for(OrderDetail orderDetail : order.getOrderDetails())
+		{
+			thanhTien += orderDetail.getPrice() * orderDetail.getQuantity();
+		}
+		model.addAttribute("thanhTien", thanhTien);
+		model.addAttribute("order", order);
 		return "order/detail";
 	}
 	

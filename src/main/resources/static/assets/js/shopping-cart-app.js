@@ -52,6 +52,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
             this.items = json ? JSON.parse(json) : [];
         }
     }
+    $scope.amount = 0;
     $scope.cart.loadFromLocalStorage();
     $scope.order = {
 		
@@ -59,7 +60,9 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
         address: "",
         account: { username: $("#username").text() },
         get orderDetails() {
+			$scope.amount = 0;
             return $scope.cart.items.map(item => {
+				$scope.amount += item.qty * item.price;
                 return {
                     product: { product_id: item.product_id },
                     price: item.price,
@@ -71,9 +74,10 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
         purchase() {
 		
           var order = angular.copy(this);
+          
             //Thuc hien dat hang
             $http.post("/rest/orders", order).then(resp => {
-                alert("Checkout successfully!");
+				alert("Checkout successfully!");
                 $scope.cart.clear();
                 location.href = "/order/detail/" + resp.data.id;
             }).catch(error => {

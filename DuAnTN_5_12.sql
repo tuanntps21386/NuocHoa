@@ -109,7 +109,7 @@ CREATE TABLE [dbo].[Products](
 	[product_id] [int] IDENTITY(1,1) NOT NULL,
 	[product_name] [nvarchar](50) NOT NULL,
 	[describe] [nvarchar](255) NOT NULL,
-	[image] [char](50) NOT NULL,
+	[image] [nvarchar](50) NOT NULL,
 	[price] [float] NOT NULL,
 	[trademark_id] [int] NOT NULL,
 	[Categories_id] [int] NOT NULL,
@@ -122,6 +122,12 @@ CREATE TABLE [dbo].[Products](
 ) ON [PRIMARY]
 GO
 
+CREATE TABLE photos (
+    photo_id INT PRIMARY KEY,
+    product_id INT,
+    photo_url VARCHAR(255)
+);
+GO
 CREATE TABLE Brand(
 	ID int IDENTITY(1,1) primary key  not null,
 	Trademark nvarchar(50)  not null,
@@ -144,6 +150,22 @@ GO
 INSERT [dbo].[Accounts] ([Username], [Password], [Fullname], [Email], [Photo], [SDT], [DiaChi]) VALUES (N'linh', N'123456', N'Linh', N'linh@gmail.com', N'user.png',null,null)
 INSERT [dbo].[Accounts] ([Username], [Password], [Fullname], [Email], [Photo], [SDT], [DiaChi]) VALUES (N'tai', N'123456', N'Linh123', N'linh123@gmail.com', N'user.png',null,null)
 INSERT [dbo].[Accounts] ([Username], [Password], [Fullname], [Email], [Photo], [SDT], [DiaChi]) VALUES (N'tuan', N'123456', N'tuan', N'tuan@gmail.com', N'user.png',null,null)
+go
+
+INSERT INTO photos (photo_id, product_id, photo_url) VALUES
+  (1, 1, '1.jpg'),
+  (2, 1, '2.jpg'),
+  (3, 1, '3.jpg'),
+  (4, 1, '4.jpg'),
+  (5, 1, '5.jpg'),
+  (6, 2, '5.jpg'),
+  (7, 2, '5.jpg'),
+  (8, 2, '5.jpg'),
+  (9, 3, '5.jpg'),
+  (10, 3, '5.jpg'),
+  (11, 3, '6.jpg');
+
+
 go
 
 SET IDENTITY_INSERT [dbo].[Brand] ON 
@@ -250,6 +272,7 @@ ADD CONSTRAINT DF_Orders_Status DEFAULT 'Chờ xác nhận' FOR Status;
 
 ALTER TABLE Products ADD CONSTRAINT FK_Products_Brand FOREIGN KEY ([trademark_id]) REFERENCES Brand (ID)
 ALTER TABLE Products ADD CONSTRAINT FK_Products_Category FOREIGN KEY ([Categories_id]) REFERENCES Category (id)
+ALTER TABLE photos ADD CONSTRAINT FK_Products_Photos FOREIGN KEY (product_id) REFERENCES Products([product_id])
 
 
 

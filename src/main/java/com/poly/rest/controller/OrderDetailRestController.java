@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.poly.dao.OrderDetailDAO;
+import com.poly.entity.Order;
 import com.poly.entity.OrderDetail;
 import com.poly.entity.Product;
 import com.poly.service.OrderDetailService;
@@ -36,16 +37,14 @@ public class OrderDetailRestController {
 
 	@GetMapping("/{orderId}")
     public ResponseEntity<Map<String, Object>> getOrderDetails(@PathVariable Long orderId) {
+		Order order = new Order();
+		order.setId(orderId);
         // Lấy thông tin chi tiết hóa đơn
-        OrderDetail orderDetail = orderDetailService.getOrderDetail(orderId);
-
-        // Lấy thông tin sản phẩm liên quan
-        List<Product> products = productService.getProductsByOrderId(orderId);
+        List<OrderDetail> orderDetails = orderDetailService.getOrderDetails(order);
 
         // Tạo đối tượng Map chứa cả hai loại thông tin
         Map<String, Object> response = new HashMap<>();
-        response.put("orderDetail", orderDetail);
-        response.put("products", products);
+        response.put("orderDetails", orderDetails);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

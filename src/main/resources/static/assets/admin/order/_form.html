@@ -10,15 +10,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="product in orderDetails">
-            <td>{{ product.product_id }}</td>
-            <td>{{ product.product_name }}</td>
-            <td>{{ product.price}}</td>
+        <tr ng-repeat="orderDetail in orderDetails">
+            <td>{{ orderDetail.id }}</td>
+            <td>{{ orderDetail.product.product_name }}</td>
+            <td>{{ orderDetail.price}}</td>
+            <td>{{ orderDetail.quantity}}</td>
             
             <!-- Thêm các cột khác nếu cần -->
-        </tr>
-        <tr ng-repeat="product in o">
-        	<td>{{ product.quantity }}</td>
         </tr>
     </tbody>
 </table>

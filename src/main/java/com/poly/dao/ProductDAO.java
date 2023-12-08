@@ -25,4 +25,6 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 
 	@Query(value = "SELECT * FROM Products p JOIN OrderDetails od ON p.product_id = od.Product_Id WHERE od.OrderId = ?1", nativeQuery = true)
 	List<Product> findByOrderId(Long orderId);
+	
+	List<Product> findByPriceBetween(double minPrice, double maxPrice);
 }

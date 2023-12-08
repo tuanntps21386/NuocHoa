@@ -25,4 +25,5 @@ public interface ProductService {
 	
 	List<Product> getProductsByOrderId(Long orderId);
 
+	List<Product> findByPriceBetween(double minPrice, double maxPrice);
 }

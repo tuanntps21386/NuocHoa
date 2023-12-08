@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
 
 <body>
-    <main th:object="${order}" class="container" id="olp_panel_id-0.7048213575205231">
+    <main class="container" id="olp_panel_id-0.7048213575205231">
         <div class="panel panel-primary">
             <div class="panel-heading">ORDER INFORMATION</div>
-            <div class="panel-body">
+            <div th:object="${order}" class="panel-body">
                 <div class="row">
                     <div class="form-group col-sm-12">
                         <div>Order Number:</div>
@@ -30,7 +30,7 @@
         
         <div>
             <div class="hiXKxx" style="border:1px solid #eee">
-                <div>
+                <div th:object="${order}">
                     <div class="x0QT2k">
                         <div>
                             <div class="KrPQEI">
@@ -118,11 +118,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="haha" style="border: 1px solid #eee;">
+                <div th:object="${thanhTien}" class="haha" style="border: 1px solid #eee;">
                     <div class="kvXy0c">
                         <div class="-78s2g">
                             <label class="_0NMXyN">Thành tiền:</label>
-                            <div class="DeWpya" tabindex="0" aria-label="Thành tiền: ₫145.700">{{amount|number:2}}đ</div>
+                            <div class="DeWpya" tabindex="0" aria-label="Thành tiền: ₫145.700">[[*{#numbers.formatDecimal(doubleValue,0,'COMMA',2,'POINT')}]]đ</div>
                         </div>
                     </div>
                     <div class="AM4Cxf">

@@ -21,11 +21,20 @@ public class ProductController {
 
 	@RequestMapping("/product")
 	public String index(Model model, @RequestParam(name = "keyword", required = false) Optional<String> keyword,
-			@RequestParam(name = "cid", required = false) Optional<Integer> cid) {
+			@RequestParam(name = "cid", required = false) Optional<Integer> cid,
+			 @RequestParam(name = "priceRange", required = false) Optional<String> priceRange){
 
 		List<Product> list;
+		if (priceRange.isPresent()) {
+            // Tách giá trị min và max từ priceRange
+            String[] priceValues = priceRange.get().split("-");
+            double minPrice = Double.parseDouble(priceValues[0]);
+            double maxPrice = Double.parseDouble(priceValues[1]);
 
-		if (keyword.isPresent()) {
+            // Tìm sản phẩm trong khoảng giá từ minPrice đến maxPrice
+            list = productService.findByPriceBetween(minPrice, maxPrice);
+        }
+		else if (keyword.isPresent()) {
 			String keywordValue = keyword.get();
 			if (isNumeric(keywordValue)) {
 				list = productService.findByBrand(keywordValue);
@@ -34,7 +43,11 @@ public class ProductController {
 			}
 		} else if (cid.isPresent()) {
 			list = productService.findByCategoryId(cid.get());
-		} else {
+		}
+		//findbypricebetween
+		
+		//
+		else {
 			list = productService.findAll();
 		}
 		model.addAttribute("items", list);

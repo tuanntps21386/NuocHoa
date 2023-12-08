@@ -46,8 +46,7 @@ app.controller("order-ctrl", function($scope, $http, $location) {
         $http.get(`/rest/order-details/${item.id}`)
             .then(resp => {
                 // Truyền thông tin chi tiết hóa đơn từ REST API vào $scope để sử dụng trong HTML
-                $scope.orderDetails = resp.data.products;
-                $scope.o = resp.data.orderDetail;
+                $scope.orderDetails = resp.data.orderDetails;
             })
             .catch(error => {
                 console.log("Error loading order detail", error);

@@ -76,7 +76,11 @@ public class ProductServiceImpl implements ProductService {
         return this.pdao.findByOrderId(orderId);
 	}
 
-	
+	@Override
+	public List<Product> findByPriceBetween(double minPrice, double maxPrice) {
+		// TODO Auto-generated method stub
+		return pdao.findByPriceBetween(minPrice, maxPrice);
+	}
 	
 }
 //	@Override
