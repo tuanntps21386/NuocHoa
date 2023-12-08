@@ -1,5 +1,7 @@
-app.controller("order-ctrl", function($scope, $http) {
+app.controller("order-ctrl", function($scope, $http, $location) {
     $scope.items = [];
+    $scope.orderDetails = [];
+    $scope.o = [];
     $scope.user = [];
     $scope.brand_items = [];
     $scope.form = {};
@@ -38,6 +40,19 @@ app.controller("order-ctrl", function($scope, $http) {
     $scope.edit = function(item) {
             $scope.form = angular.copy(item);
             $scope.check = item.username;
+           
+            
+            // Gọi REST API để lấy thông tin chi tiết hóa đơn
+        $http.get(`/rest/order-details/${item.id}`)
+            .then(resp => {
+                // Truyền thông tin chi tiết hóa đơn từ REST API vào $scope để sử dụng trong HTML
+                $scope.orderDetails = resp.data.products;
+                $scope.o = resp.data.orderDetail;
+            })
+            .catch(error => {
+                console.log("Error loading order detail", error);
+            });
+            
         }
         //Void tạo mới sản phẩm
     $scope.create = function() {
@@ -133,4 +148,5 @@ app.controller("order-ctrl", function($scope, $http) {
             $scope.initialize();
         });
     }
+ 
 });

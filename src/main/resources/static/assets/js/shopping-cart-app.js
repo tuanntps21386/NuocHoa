@@ -37,6 +37,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
         },
         //Tong thanh tien cac mat hang trong gio
         get amount() {
+			//return this.ThanhTien ;
+			
             return this.items.map(item => item.qty * item.price).reduce((total, qty) => total += qty, 0)
         },
         //Luu gio hang vao local storage
@@ -65,6 +67,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
                 }
             });
         },
+        
         purchase() {
 		
           var order = angular.copy(this);

@@ -1,19 +1,16 @@
-<div class="panel panel-default">
-    <div class="panel-heading">AUTHORIZING</div>
-    <table class="table table-border">
-        <thead class="bg-success" style="font-variant:samll-caps">
-            <tr>
-                <th></th>
-                <th ng-repeat="role in roles" class="text-center">{{role.name}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="acc in admins">
-                <td>{{acc.fullname}}</td>
-                <th ng-repeat="role in roles" class="text-center">
-                    <input type="checkbox" ng-checked="authority_of(acc,role)" ng-click="authority_changed(acc,role)">
-                </th>
-            </tr>
-        </tbody>
-    </table>
+<ul class="nav nav-tabs" style="font-variant:small-caps">
+    <li>
+        <a data-toggle="tab" data-target="#edit" style="cursor: pointer;">Account Admin</a>
+    </li>
+    <li class="active">
+        <a data-toggle="tab" data-target="#list" style="cursor: pointer;">All Account</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div id="edit" class="tab-pane fade">
+        <div ng-include="'/assets/admin/authority/admin.html'"></div>
+    </div>
+    <div id="list" class="tab-pane fade in active">
+        <div ng-include="'/assets/admin/authority/all.html'"></div>
+    </div>
 </div>

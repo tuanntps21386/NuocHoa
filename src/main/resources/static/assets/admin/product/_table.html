@@ -20,7 +20,7 @@
                 <th>Image</th>
                 <th>Trademark</th>
                 <th>Category</th>
-                <th>Available?</th>
+                
                 <th></th>
             </tr>
         </thead>
@@ -29,11 +29,11 @@
                 <td>{{item.product_id}}</td>
                 <td>{{item.product_name}}</td>
                 <td>{{item.price|number:2}}</td>
-                <td>{{item.createDate|date:'dd-MM-yyy'}}</td>
+                <td>{{item.createDate|date:'dd-MM-yyyy'}}</td>
                 <td>{{item.image}}</td>
                 <td>{{item.brand.trademark}}</td>
                 <td>{{item.category.name}}</td>
-                <td>{{item.available?'Yes':'No'}}</td>
+                
                 <td>
                     <div class="btn-group btn-group-xs">
                         <button ng-click="edit(item)" data-toggle="tab" data-target="#edit" class="btn btn-warning glyphicon glyphicon-edit"></button>

@@ -57,10 +57,10 @@ public class OrderServiceImpl implements OrderService {
 	        TypeReference<List<OrderDetail>> type = new TypeReference<List<OrderDetail>>() {};
 	        List<OrderDetail> details = mapper.convertValue(orderData.get("orderDetails"), type)
 	                .stream().peek(d -> d.setOrder(order)).collect(Collectors.toList());
-
+	        
 	        // Save all orderDetails to the database
 	        ddao.saveAll(details);
-
+	        
 	        return order;
 	}
 

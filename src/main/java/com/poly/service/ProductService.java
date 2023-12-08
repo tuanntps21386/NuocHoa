@@ -18,8 +18,11 @@ public interface ProductService {
 
 	Product update(Product product);
 
+	//Tìm sản phẩm của danh mục đó
 	List<Product> findByCategoryId(Integer id);
 
 	void delete(Integer product_id);
+	
+	List<Product> getProductsByOrderId(Long orderId);
 
 }

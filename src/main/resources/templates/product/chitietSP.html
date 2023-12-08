@@ -48,76 +48,30 @@
 
 									<div
 										class="swiper-container gallery-top swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
-										<div class="swiper-wrapper" id="lightgallery">
+										<div  class="swiper-wrapper" id="lightgallery" >
 
-											<a class="swiper-slide swiper-slide-active" data-hash="0"
+											<a th:each="photo : ${item.photos}"  class="swiper-slide swiper-slide-next" data-hash="1"
 												href="" title="Click để xem" style="width: 429px;"> <img
-												height="480" width="480" th:src="@{|/img/*{image}|}"
+												height="480" width="480" th:src="@{|/img/${photo.photo_url}|}"
 												alt="Parfums De Marly Haltane">
-											</a> <a class="swiper-slide swiper-slide-next" data-hash="1"
-												href="" title="Click để xem" style="width: 429px;"> <img
-												height="480" width="480" src="/img/chitietsp_1_1.webp"
-												alt="Parfums De Marly Haltane">
-											</a> <a class="swiper-slide" data-hash="2" href=""
-												title="Click để xem" style="width: 429px;"> <img
-												height="480" width="480" src="/img/chitietsp_1_2.webp"
-												alt="Parfums De Marly Haltane">
-											</a> <a class="swiper-slide" data-hash="3" href=""
-												title="Click để xem" style="width: 429px;"> <img
-												height="480" width="480" src="/img/chitietsp_1.webp"
-												alt="Parfums De Marly Haltane">
-											</a> <a class="swiper-slide" data-hash="4" href=""
-												title="Click để xem" style="width: 429px;"> <img
-												height="480" width="480" src="/img/chitietsp_1_1.webp"
-												alt="Parfums De Marly Haltane">
-											</a>
+											</a> 
 										</div>
 									</div>
 									<div
 										class="swiper-container gallery-thumbs swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events swiper-container-free-mode swiper-container-thumbs">
 										<div class="swiper-wrapper">
-
-											<div
+											<div th:each="photo : ${item.photos}"
 												class="swiper-slide swiper-slide-visible swiper-slide-active swiper-slide-thumb-active"
 												data-hash="0" style="width: 98.75px; margin-right: 10px;">
 												<div class="p-100">
-													<img height="80" width="80" src="/img/chitietsp_1.webp"
+													<img height="80" width="80" th:src="@{|/img/${photo.photo_url}|}"
 														alt="Parfums De Marly Haltane">
 												</div>
 											</div>
 
-											<div
-												class="swiper-slide swiper-slide-visible swiper-slide-next"
-												data-hash="1" style="width: 98.75px; margin-right: 10px;">
-												<div class="p-100">
-													<img height="80" width="80" src="/img/chitietsp_1_1.webp"
-														alt="Parfums De Marly Haltane">
-												</div>
-											</div>
+											
 
-											<div class="swiper-slide swiper-slide-visible" data-hash="2"
-												style="width: 98.75px; margin-right: 10px;">
-												<div class="p-100">
-													<img height="80" width="80" src="/img/chitietsp_1_2.webp"
-														alt="Parfums De Marly Haltane">
-												</div>
-											</div>
-
-											<div class="swiper-slide swiper-slide-visible" data-hash="3"
-												style="width: 98.75px; margin-right: 10px;">
-												<div class="p-100">
-													<img height="80" width="80" src="/img/chitietsp_1.webp"
-														alt="Parfums De Marly Haltane">
-												</div>
-											</div>
-
-											<div class="swiper-slide" data-hash="4"
-												style="width: 98.75px; margin-right: 10px;">
-												<div class="p-100">
-													<img height="80" width="80" src="/img/chitietsp_1_1.webp"
-														alt="Parfums De Marly Haltane">
-												</div>
-											</div>
+											
 										</div>
 										<div class="swiper-button-next"></div>
 										<div class="swiper-button-prev swiper-button-disabled"></div>
@@ -129,7 +83,7 @@
 								
 								<div class="inventory_quantity">
 									<span class="mb-break"> <span class="stock-brand-title">Thương
-											hiệu:</span> <span class="a-vendor">Parfums De Marly </span>
+											hiệu:</span> <span th:text="*{brand.Trademark}"></span>
 									</span> <span class="line">&nbsp;&nbsp;|&nbsp;&nbsp;</span> <span
 										class="mb-break"> <span class="stock-brand-title">Tình
 											trạng:</span> <span class="a-stock"><span class="a-stock">Còn
@@ -256,7 +210,7 @@
 														class="form-control prd_quantity bk-product-qty">
 													<button class="btn_num num_2 button button_qty"
 														type="button">
-														<span>+</span>
+														+
 													</button>
 													<button th:attr="ng-click=@{|cart.add(${product_id})|}" type="submit"
 														class="btn btn_base normal_button btn_add_cart add_to_cart btn-cart">
@@ -297,6 +251,7 @@
 	<div th:fragment="binhLuan" th:insert="~{product/binhLuan :: binhLuan}"></div>
 
 	<!-- SP LIÊN QUAN -->
+	
 	<div th:fragment="SPLienQuan" th:insert="~{product/SPLienQuan :: SPLienQuan}"></div>
 	<script th:src="@{/js/slideproduct.js}"></script>
 	</main>

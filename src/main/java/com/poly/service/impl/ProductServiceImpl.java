@@ -70,8 +70,14 @@ public class ProductServiceImpl implements ProductService {
 		pdao.deleteById(product_id);
 	}
 
-	
+	@Override
+	public List<Product> getProductsByOrderId(Long orderId) {
+		// Giả định rằng có một phương thức trong repository để lấy sản phẩm dựa trên orderId
+        return this.pdao.findByOrderId(orderId);
+	}
 
+	
+	
 }
 //	@Override
 //	public List<Product> findByCategoryId(String id) {
