@@ -73,7 +73,7 @@ public class HomeController {
 	}
 	@GetMapping("/about")
 	public String about() {
-		return "about";
+		return "layout/about";
 	}
 	
 	
@@ -154,7 +154,7 @@ public class HomeController {
 	
 	@GetMapping("/contact")
 	public String contact() {
-		return "contact";
+		return "layout/contact";
 	}
 	@RequestMapping({ "/admin", "/admin/index" })
 	public String admin() {

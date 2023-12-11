@@ -18,13 +18,12 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	@Query("SELECT a FROM Product a WHERE a.brand.id=?1")
 	List<Product> findByBrand(String keyword);
 	
-	
-	
 	@Query("SELECT a FROM Product a WHERE a.category.id=?1")
 	List<Product> findByCategoryId(Integer id);
 
 	@Query(value = "SELECT * FROM Products p JOIN OrderDetails od ON p.product_id = od.Product_Id WHERE od.OrderId = ?1", nativeQuery = true)
 	List<Product> findByOrderId(Long orderId);
 	
+	List<Product> findByCapacity(Double capacity);
 	List<Product> findByPriceBetween(double minPrice, double maxPrice);
 }

@@ -22,10 +22,21 @@ public class ProductController {
 	@RequestMapping("/product")
 	public String index(Model model, @RequestParam(name = "keyword", required = false) Optional<String> keyword,
 			@RequestParam(name = "cid", required = false) Optional<Integer> cid,
-			 @RequestParam(name = "priceRange", required = false) Optional<String> priceRange){
+			@RequestParam(name = "priceRange", required = false) Optional<String> priceRange,
+	        @RequestParam(name = "searchByCapacity", required = false, defaultValue = "false") boolean searchByCapacity,
+	        @RequestParam(name = "capacity", required = false) Optional<Double> capacity){
 
 		List<Product> list;
-		if (priceRange.isPresent()) {
+		if (searchByCapacity) {
+            // Tìm sản phẩm có dung tích bằng với giá trị capacity
+            if (capacity.isPresent()) {
+                list = productService.findByCapacity(capacity.get());
+            } else {
+                // Nếu ô kiểm tìm kiếm theo dung tích được chọn nhưng không có giá trị capacity, xử lý theo ý của bạn
+                list = productService.findAll(); // Hoặc bạn có thể xử lý theo cách khác tùy thuộc vào yêu cầu
+              }
+            
+          }else if (priceRange.isPresent()) {
             // Tách giá trị min và max từ priceRange
             String[] priceValues = priceRange.get().split("-");
             double minPrice = Double.parseDouble(priceValues[0]);

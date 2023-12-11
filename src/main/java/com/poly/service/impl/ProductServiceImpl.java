@@ -82,6 +82,12 @@ public class ProductServiceImpl implements ProductService {
 		return pdao.findByPriceBetween(minPrice, maxPrice);
 	}
 	
+	@Override
+	public List<Product> findByCapacity(Double capacity) {
+		// TODO Auto-generated method stub
+		return pdao.findByCapacity(capacity);
+	}
+	
 }
 //	@Override
 //	public List<Product> findByCategoryId(String id) {

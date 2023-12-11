@@ -24,6 +24,8 @@ public interface ProductService {
 	void delete(Integer product_id);
 	
 	List<Product> getProductsByOrderId(Long orderId);
+	
+	List<Product> findByCapacity(Double capacity);
 
 	List<Product> findByPriceBetween(double minPrice, double maxPrice);
 }

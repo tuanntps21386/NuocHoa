@@ -34,6 +34,7 @@ public class Product implements Serializable {
 	String describe;
 	String image;
 	Double price;
+	Double capacity;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
 	Date createDate = new Date();
